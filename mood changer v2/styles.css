@@ -1,0 +1,280 @@
+:root {
+    --happy-color: #FFD166;
+    --sad-color: #6EC6FF;
+    --angry-color: #FF6B6B;
+    --neutral-color: #A5A5A5;
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --text-dark: #333;
+    --text-light: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 20px;
+    overflow-x: hidden;
+    color: var(--text-dark);
+}
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    z-index: 1;
+    padding: 15px;
+}
+
+.mood-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    padding: 25px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Mood-specific styles */
+.mood-card.happy { background: rgba(255, 209, 102, 0.25); color: #5E503F; }
+.mood-card.sad { background: rgba(110, 198, 255, 0.25); color: #284B63; }
+.mood-card.angry { background: rgba(255, 107, 107, 0.25); color: #6A041D; }
+.mood-card.neutral { background: rgba(165, 165, 165, 0.25); color: #4A4A4A; }
+
+.mood-header {
+    margin-bottom: 15px;
+}
+
+.mood-header h1 {
+    font-size: clamp(28px, 5vw, 32px);
+    font-weight: 700;
+    margin-bottom: 5px;
+    background: linear-gradient(90deg, #FF9A8B 0%, #FF6B95 50%, #FF8E53 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.subtitle {
+    font-size: clamp(12px, 3vw, 14px);
+    opacity: 0.8;
+}
+
+.mood-display {
+    margin: 25px 0;
+}
+
+.mood-emoji {
+    font-size: clamp(80px, 20vw, 100px);
+    margin-bottom: 10px;
+    animation: float 4s ease-in-out infinite;
+    transform-origin: center bottom;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) scale(1) rotate(0deg); }
+    50% { transform: translateY(-15px) scale(1.05) rotate(5deg); }
+}
+
+#mood-name {
+    font-size: clamp(24px, 6vw, 28px);
+    font-weight: 600;
+    margin: 10px 0;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.9;
+}
+
+.mood-quote {
+    font-size: clamp(14px, 3.5vw, 16px);
+    line-height: 1.6;
+    margin: 15px 0;
+    font-weight: 300;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.emoji-shower {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.emoji-shower span {
+    position: absolute;
+    font-size: clamp(18px, 4vw, 24px);
+    animation: showerEffect 3s linear forwards;
+    opacity: 0;
+    z-index: -1;
+}
+
+@keyframes showerEffect {
+    0% { opacity: 0; transform: translateY(-100px) rotate(0deg) scale(0.5); }
+    20% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(500px) rotate(360deg) scale(1.2); }
+}
+
+.mood-tip {
+    background: rgba(255, 255, 255, 0.4);
+    padding: 12px;
+    border-radius: 12px;
+    margin: 20px 0;
+    font-size: clamp(13px, 3vw, 14px);
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 8px;
+}
+
+.tip-icon {
+    font-size: clamp(20px, 4vw, 24px);
+    flex-shrink: 0;
+}
+
+.mood-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.mood-btn {
+    padding: clamp(12px, 3vw, 15px);
+    border: none;
+    border-radius: 12px;
+    font-size: clamp(14px, 3.5vw, 16px);
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.mood-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.mood-btn:active {
+    transform: translateY(1px);
+}
+
+.mood-btn.happy { background: var(--happy-color); color: #5E503F; }
+.mood-btn.sad { background: var(--sad-color); color: #284B63; }
+.mood-btn.angry { background: var(--angry-color); color: white; }
+.mood-btn.neutral { background: var(--neutral-color); color: white; }
+
+.history-container {
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 12px;
+}
+
+.history-title {
+    font-size: clamp(14px, 3.5vw, 16px);
+    margin-bottom: 8px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.history-items {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.history-item {
+    width: clamp(35px, 8vw, 40px);
+    height: clamp(35px, 8vw, 40px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(18px, 4vw, 20px);
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.history-item:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Animation classes */
+.animate-pop {
+    animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.animate-rotate {
+    animation: rotate 0.6s ease;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    75% { transform: rotate(-10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Extreme mobile responsiveness */
+@media (max-width: 350px) {
+    .mood-buttons {
+        grid-template-columns: 1fr;
+    }
+    
+    .mood-card {
+        padding: 15px;
+    }
+    
+    .mood-tip {
+        flex-direction: column;
+        text-align: center;
+    }
+}

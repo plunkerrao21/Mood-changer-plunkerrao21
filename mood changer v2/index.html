@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Flow - Mood Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="app-container">
+        <div class="mood-card" id="moodCard">
+            <div class="mood-header">
+                <h1>Emotion Flow</h1>
+                <p class="subtitle">Your emotional intelligence companion</p>
+            </div>
+            
+            <div class="mood-display">
+                <div class="mood-emoji" id="moodEmoji">🌊</div>
+                <p id="mood-name">How are you feeling?</p>
+                <div class="mood-quote" id="moodQuote">Select your current mood to begin</div>
+            </div>
+            
+            <div class="emoji-shower"></div>
+            
+            <div class="mood-tip" id="moodTip">
+                <div class="tip-icon">💡</div>
+                <p>Recognizing your emotions is the first step to emotional intelligence</p>
+            </div>
+            
+            <div class="mood-buttons">
+                <button class="mood-btn happy" onclick="changeMood('happy')">
+                    <span>😊</span> Happy
+                </button>
+                <button class="mood-btn sad" onclick="changeMood('sad')">
+                    <span>😢</span> Sad
+                </button>
+                <button class="mood-btn angry" onclick="changeMood('angry')">
+                    <span>😠</span> Angry
+                </button>
+                <button class="mood-btn neutral" onclick="changeMood('neutral')">
+                    <span>😐</span> Neutral
+                </button>
+            </div>
+            
+            <div class="history-container">
+                <div class="history-title">Your Mood Journey</div>
+                <div class="history-items" id="historyItems"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
